@@ -64,7 +64,7 @@ class Command(BaseCommand):
             )
             user.set_password(fake_password)
             users.append(user)
-        User.objects.bulk_create(users)
+        User.objects.bulk_create(users, ignore_conflicts=True)
         self.stdout.write(self.style.SUCCESS(f'Successfully populated the database with {total} fake users'))
 
     def generate_unique_username(self, fake, unique_usernames):
@@ -84,3 +84,4 @@ class Command(BaseCommand):
             if fake_username not in unique_usernames:
                 unique_usernames.add(fake_username)
                 return fake_username
+            
