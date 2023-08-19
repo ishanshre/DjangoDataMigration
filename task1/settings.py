@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third party apps
+    "phonenumber_field",
     # local apps
     "account.apps.AccountConfig",
 ]
@@ -82,10 +84,21 @@ WSGI_APPLICATION = "task1.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("db_dbname", 'postgres'),
+        "USER": os.environ.get("db_username", 'postgres'),
+        "PASSWORD": os.environ.get("db_password", ''),
+        "HOST": os.environ.get("db_host", 'localhost'),
+        "PORT": os.environ.get("db_port", '5432'),
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation

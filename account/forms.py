@@ -5,6 +5,9 @@ This module contains forms related to User creation, change and authentication
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 User = get_user_model()
 
 class CustomUserCreationForm(UserCreationForm):
@@ -21,6 +24,7 @@ class CustomUserCreationForm(UserCreationForm):
     - date_of_birth: The user's date of birth.
     - phone_number: The user's phone number.
     """
+    phone_number = PhoneNumberField(region="NP", widget=PhoneNumberPrefixWidget(initial="NP"))
     class Meta(UserCreationForm.Meta):
         """
         It contains the meta data for user creaton form
@@ -42,6 +46,7 @@ class CustomUserChangeForm(UserChangeForm):
     - date_of_birth: The user's date of birth.
     - phone_number: The user's phone number.
     """
+    phone_number = PhoneNumberField(region="NP", widget=PhoneNumberPrefixWidget(initial="NP"))
     class Meta:
         """
         It contains the meta data for user change form
