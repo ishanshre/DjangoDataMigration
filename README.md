@@ -257,3 +257,4 @@ pip install -r requirements.txt
   1. New Optimized Database schema
   2. Custom User model extending Django AbstractBaseUser and PermissionMixin
   3. Backup User data script
+  4. Data Migration Script
