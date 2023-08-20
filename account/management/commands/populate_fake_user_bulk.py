@@ -53,7 +53,7 @@ class Command(BaseCommand):
             fake_username = self.generate_unique_username(fake, unique_usernames)
             fake_full_name = fake.name()
             fake_date_of_birth = fake.date_of_birth(minimum_age=18, maximum_age=80)
-            fake_phone_number = fake.random_int(min=1000000000, max=9999999999)
+            fake_phone_number = fake.phone_number()
             fake_password = "Password@123"
             user = User.objects.create_user(
                 email=fake_email,
