@@ -142,3 +142,15 @@ class Profile(models.Model):
         Return a string
         """
         return f"{self.user.username}"
+
+
+class Activity(models.Model):
+    """
+    Activity store the user's activity like login, update, and so on
+    """
+    user = models.ForeignKey(NewUser, on_delete=models.CASCADE, related_name="activities")
+    activity_type = models.CharField(max_length=100)
+    timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return self.user.username
