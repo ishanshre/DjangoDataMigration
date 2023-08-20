@@ -54,7 +54,7 @@ class UserAdmin(BaseUserAdmin):
         (
             ("User Registration", {
                 "classes":("wide",),
-                "fields":("username", "email", "full_name","phone_number","date_of_birth", "password1", "password2")
+                "fields":("username", "email", "full_name","phone_number","date_of_birth", "password1", "password2"),
             })
         ),
     )

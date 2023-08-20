@@ -3,7 +3,7 @@ This is management command for backing up user table data in postgresql
 """
 import os
 import subprocess
-from django.core.management.base import BaseCommand, CommandParser
+from django.core.management.base import BaseCommand
 from django.conf import settings
 
 

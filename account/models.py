@@ -94,7 +94,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     groups = models.ManyToManyField(
         Group,
-        related_name="newuser_set",
+        related_name="NewUser_set",
         blank=True,
         verbose_name="groups",
         help_text='''The groups this user belongs to. 
@@ -102,7 +102,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
      )
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='newuser_set',  # Use a unique related_name
+        related_name='NewUser_set',  # Use a unique related_name
         blank=True,
         verbose_name='user permissions',
         help_text='Specific permissions for this user.',
@@ -125,3 +125,20 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
             str: The username of the user.
         """
         return f"{self.username}"
+
+
+class Profile(models.Model):
+    """
+    Profile table has one to one relationship with new users table.
+    Add additional user info.
+    """
+    user = models.OneToOneField(NewUser, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=10000, null=True, blank=True)
+    avatar = models.ImageField(upload_to="user/profile/avatar", null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """
+        Return a string
+        """
+        return f"{self.user.username}"
